@@ -1,0 +1,41 @@
+/*スマホ用メニューブロック全体*/
+li {
+  list-style: none;
+}
+#menubar-s {
+	overflow: auto;height: 100%;
+	position: fixed;z-index: 100;
+	top: 0px;
+	width: 100%;
+	background: rgba(0,0,0,0.8);
+	border-top: 1px solid #fff;
+	animation-name: frame1;		/*冒頭のkeyframesの名前*/
+	animation-duration: 0.5s;	/*アニメーションの実行時間。0.5秒。*/
+	animation-fill-mode: both;	/*待機中は最初のキーフレームを、完了後は最後のキーフレームを維持*/
+	font-size: 16px;
+}
+#menubar-s li span {
+	margin-left: 20px;
+	font-size: 80%;
+}
+/*メニュー１個あたりの設定と、子メニューの見出し。*/
+#menubar-s ul li a,#menubar_hdr2 {
+	display: block;text-decoration: none;
+	padding: 30px 20px 30px 60px;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+}
+#menubar-s2 {
+	display: block;
+	margin-top: 10px;
+	border-radius: 5px;
+	background: rgba(0,0,0,0.3);
+	border: 1px solid #fff;
+}
+#menubar-s2 li a {
+	border-bottom: 1px solid #fff !important;
+	padding: 10px 20px !important;
+}
+#menubar-s2 li:last-child a {
+	border-bottom: none !important;
+}

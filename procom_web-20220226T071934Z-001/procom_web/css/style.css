@@ -1,0 +1,1066 @@
+@charset "utf-8";
+
+
+/*Google Fontsの読み込み
+---------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tangerine&display=swap');
+
+
+/*keyframes.cssの読み込み
+---------------------------------------------------------------------------*/
+@import url("keyframes.css");
+
+
+/*全端末（PC・タブレット・スマホ）共通設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+li {
+	padding-left: 0;
+}
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+	margin: 0 auto;
+	font-size: 100%;
+	max-width: 1920px;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	color: #fff;
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+	line-height: 2;		/*行間*/
+	background: #222;	/*背景色*/
+	font-size: 16px;
+	-webkit-text-size-adjust: none;
+	max-width: 1920px;
+	overflow-x: hidden;
+}
+h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form {margin: 0px;padding: 0px;font-weight: normal;}
+ul {list-style-type: none;}
+ol {padding-left: 40px;padding-bottom: 15px;}
+img {border: none;width: 100%;height: 100%; vertical-align: middle;}
+table {border-collapse:collapse;font-size: 100%;border-spacing: 0;}
+video {max-width: 100%;}
+iframe {width: 100%;}
+
+/*リンク（全般）設定
+---------------------------------------------------------------------------*/
+a {
+	text-decoration: none;
+	color: #fff;
+	transition: 0.2s;	/*マウスオン時の移り変わるまでの時間設定。0.2秒。*/
+}
+a:hover {
+	color: #ffd93f;			/*マウスオン時の文字色*/
+}
+
+/*inner
+---------------------------------------------------------------------------*/
+.inner {
+	max-width: 1400px;	/*サイトの最大幅*/
+	margin: 0 auto;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+/*ヘッダー
+---------------------------------------------------------------------------*/
+/*ヘッダーブロック*/
+header {
+	position: relative;
+	padding: 20px;	/*ヘッダー内の余白*/
+}
+/*ヘッダーブロック（トップページへの追加設定）*/
+.home header {
+	padding: 0px;
+}
+/*メインビジュアル*/
+#mainvisual {
+	height: 80vh;
+	max-width: 1920px;
+	max-height: 800px;
+	min-height: 650px;
+}
+.bg {
+	animation:slide 3s ease-in-out infinite alternate;
+	background-image: linear-gradient(-60deg, #333 50%,#000 50%);
+	bottom:0;
+	left:-50%;
+    opacity:.5;
+	position:absolute;
+    right:-50%;
+    top:0;
+    z-index:-1;
+}
+.bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+}
+.bg3 {
+    animation-duration:5s;
+}
+.contents {
+	display: flex;
+	justify-content: space-around;
+	width: 70%;
+	position: absolute;
+	top: 20%;
+	left: 15%;
+	height: 60%;
+	max-height: 483px;
+}
+.contents > div {
+	width: 40%;
+}
+.logo {
+	width: 100%;
+	height: 100%;
+	background:url(../images/MainLogo.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.PROCON {
+	height: 100%;
+	width: 100%;
+	background: url(../images/PROGRAMMERS.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+
+/*メインメニューのブロック
+---------------------------------------------------------------------------*/
+/*メニューブロック*/
+#menubar {
+	position: relative;z-index: 10;
+	text-align: center;
+	background: #fff;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	font-family: 'Questrial', sans-serif;	/*冒頭で読み込んだGoogle Fontsを適用する指定*/
+	height: 105px;	/*高さ。「#menubar ul li a」や「fixmenu」とも連動する。*/
+
+}
+/*メニュー１個あたりの設定*/
+#menubar ul li {
+	float: left;	/*左に回り込み*/
+	width: 20%;
+	font-size: 20px;
+}
+#menubar ul li a {
+	text-decoration: none;display: block;
+	height: 85px;		/*メニューブロックの高さ。ここの「85」と、下の行の「20」を合計した「105」の数字と、上の「#menubar」の「height」および下のfixmenu設定に２箇所ある「margin-top」の数字を合わせる。*/
+	padding-top: 20px;	/*メニューブロックの高さプラス、上に空ける余*/
+	color: #333;
+}
+/*マウスオン時の文字色*/
+#menubar ul li a:hover {
+	color: #a10808;
+}
+/*飾り文字*/
+#menubar ul li span {
+	display: block;
+	font-size: 10px;
+	color: #999;
+	letter-spacing: 0.2em;
+}
+/*スマホ用メニューを表示させない*/
+#menubar-s, #menubar-s2 {display: none;}
+
+/*３本バーアイコンを表示させない*/
+#menubar_hdr {display: none;}
+
+/*fixmenu設定（メニューが画面上部に到達した際のスタイル）
+---------------------------------------------------------------------------*/
+/*上部固定メニュー用fixmenu設定*/
+body.is-fixed-menu #menubar.nav-fix-pos {
+	position: fixed;width: 100%;top: 0px;
+	height: 60px;	/*メニューの高さを少し狭くする*/
+}
+body.is-fixed-menu #contents {
+	margin-top: 105px;
+}
+body.is-fixed #menubar.nav-fix-pos {
+	position: fixed;width: 100%;top: 0px;
+}
+body.is-fixed #contents {
+	margin-top: 105px;
+}
+
+body.is-fixed-menu #menubar ul li span {
+	display: none;
+}
+body.is-fixed-menu #menubar ul li a {
+	height: 50px;
+	padding-top: 10px;
+}
+/*ドロップダウンメニューへの再設定*/
+body.is-fixed-menu #menubar ul.ddmenu li a {
+	padding: 20px;
+	height: auto;
+}
+
+/*コンテンツ
+---------------------------------------------------------------------------*/
+#contents {
+	padding: 100px 0 50px;
+	position: relative;
+	animation-name: opa2;	/*keyframes.cssで使う@keyframesの指定*/
+	animation-duration: 0.5S;	/*アニメーションの実行時間*/
+	animation-delay: 0.5s;		/*出現するタイミング（秒後）*/
+	animation-fill-mode: both;
+}
+/*h2タグ*/
+#contents h2 {
+	clear: both;
+	margin-bottom: 100px;
+	text-align: center;
+	letter-spacing: 0.2em;
+}
+/*h2タグ内のspanタグ（装飾文字）*/
+#contents h2 span {
+	display: block;
+	font-size: 0.3em;
+	color: #999;
+}
+/*h3タグ*/
+#contents h3 {
+	clear: both;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #fff;
+	padding-left: 3%;
+	letter-spacing: 0.1em;
+}
+#contents h4 {
+	padding-left: 3%;
+}
+/*段落タグ*/
+#contents p {
+	padding: 0 3% 30px;
+}
+#contents h2 + p,
+#contents h3 + p {
+	margin-top: -5px;
+}
+#contents p + p {
+	margin-top: -10px;
+}
+#contents section + section {
+	margin-top: 100px;
+}
+
+/*list（worksページで使っている横長ブロック）
+---------------------------------------------------------------------------*/
+/*ボックスの設定*/
+#contents .list {
+	position: relative;
+	border-radius: 5px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	background: #000;
+	color: #fff;
+	margin: 0 3% 30px;
+	border: 1px solid rgba(255,255,255,0.5);
+}
+/*リンクテキストの文字色*/
+#contents .list a {
+	color: #fff;
+}
+/*ボックス内のh4（見出し）タグ*/
+#contents .list h4 {
+	margin-bottom: 20px;
+}
+/*ボックス内のp（段落）タグ*/
+#contents .list p {
+	padding: 0;		/*余白のリセット*/
+}
+/*ボックス内のfigure画像*/
+#contents .list figure {
+	width: 50%;
+}
+/*「class="text"」を指定したブロック。テキストブロック。*/
+#contents .list .text {
+	width: 40%;
+	padding: 2% 5%;
+}
+#contents .list:nth-of-type(even) .text {
+	order: 1;
+}
+
+/*装飾文字の設定（共通）*/
+#contents .list::before {
+	font-size: 18vw;
+	line-height: 1;
+	position: absolute;
+	color: rgba(255,255,255,0.15);
+	font-family: 'Tangerine', cursive;
+}
+/*奇数番目のブロックの文字の配置場所指定*/
+#contents .list:nth-of-type(odd)::before {
+	left: -60px;
+	top: -40px;
+}
+/*偶数番目のブロックの文字の配置場所指定*/
+#contents .list:nth-of-type(even)::before {
+	right: 0px;
+	top: -40px;
+}
+/*１つ目ブロックに表示させるテキスト*/
+#contents .list:nth-of-type(1)::before {
+	content: "Works1";
+}
+/*２つ目ブロックに表示させるテキスト*/
+#contents .list:nth-of-type(2)::before {
+	content: "Works2";
+}
+/*３つ目ブロックに表示させるテキスト*/
+#contents .list:nth-of-type(3)::before {
+	content: "Works3";
+}
+
+/*ボックス内のボタン（共通）*/
+.btn1 a {
+	display: block;
+	text-decoration: none;
+	border: 1px solid #fff;
+	text-align: center;
+	padding: 10px 30px;
+	margin: 40px auto 0;
+}
+/*ボタンのマウスオン時（共通）*/
+.btn1 a:hover {
+	background: #fff;
+	color: #000 !important;
+}
+
+/*list-column（トップページで使っている３列ブロック）
+---------------------------------------------------------------------------*/
+/*カラムブロック全体を囲むボックス*/
+#contents .list-column-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin: 0 3%;
+}
+/*１カラムあたりの設定*/
+#contents .list-column {
+	display: flex;
+	flex-direction: column;
+	width: 32%;
+	margin-bottom: 20px;
+	background: #000;
+	color: #fff;
+	border-radius: 5px;
+	overflow: hidden;
+	border: 1px solid rgba(255,255,255,0.5);
+}
+/*リンクテキストの文字色*/
+#contents .list-column a {
+	color: #fff;
+}
+/*ボックス内のh4（見出し）タグ*/
+#contents .list-column h4 {
+	margin-bottom: 20px;
+}
+/*ボックス内のp（段落）タグ*/
+#contents .list-column p {
+	padding: 0;
+}
+
+/*「class="text"」を指定したブロック。テキストブロック。*/
+#contents .list-column .text {
+	padding: 5%;
+	flex: 1 0 auto;
+}
+/*IEバグ対応*/
+#contents .list-column figure {
+	height: 33%;
+}
+
+/*フッター設定
+---------------------------------------------------------------------------*/
+footer {
+	clear: both;position: relative;z-index: 1;
+	font-size: 0.8rem;
+	background: #111;
+	color: #ccc;
+	text-align: center;
+}
+footer a {color: #ccc;}
+footer a:hover {color: #fff;}
+footer .pr {display: block;font-size: 0.8rem;}
+
+/*フッターメニュー
+---------------------------------------------------------------------------*/
+/*ボックス全体*/
+/*コピーライト
+---------------------------------------------------------------------------*/
+#copyright {
+	clear: both;
+	text-align: center;
+	background: #000;
+	padding: 20px 0;
+}
+#copyright a {text-decoration: none;}
+
+/*トップページ内「更新情報・お知らせ」ブロック
+---------------------------------------------------------------------------*/
+/*見出しを含まないお知らせブロック*/
+#new dl {
+	padding: 0px 20px;
+}
+/*日付設定*/
+#new dt {
+	float: left;
+	width: 9em;
+	letter-spacing: 0.1em;
+}
+/*記事設定*/
+#new dd {
+	padding-left: 9em;
+}
+
+/*ヘッダーにメニューが固定される分、リンク先が隠れるのを防ぐ為のスタイル。※ページ内へのリンクで使う。
+---------------------------------------------------------------------------*/
+.link {
+	display: block;
+	margin-top: -120px;
+	padding-top: 120px;
+}
+
+/*PAGE TOP（↑）設定
+---------------------------------------------------------------------------*/
+/*通常時のボタンは非表示*/
+body .nav-fix-pos-pagetop a {display: none;}
+/*fixmenu_pagetop.jsで設定している設定値になったら出現するボタンスタイル*/
+body.is-fixed-pagetop .nav-fix-pos-pagetop a {
+	display: block;text-decoration: none;text-align: center;
+	width: 50px;
+	line-height: 50px;
+	z-index: 1;
+	position: fixed;
+	bottom: 20px;
+	right: 3%;
+	background: #666;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	border: 1px solid #fff;
+	animation-name: opa1;
+	animation-duration: 1S; /*アニメーションの実行時間*/
+	animation-fill-mode: both;	/*アニメーションの待機中は最初のキーフレームを維持、終了後は最後のキーフレームを維持。*/
+}
+/*マウスオン時*/
+body.is-fixed-pagetop .nav-fix-pos-pagetop a:hover {
+	background: #999;
+}
+
+/*ul.disc,olタグ
+---------------------------------------------------------------------------*/
+ul.disc {
+	list-style: disc;
+	padding: 0 3% 20px 6%;
+}
+ol {
+	padding: 0 3% 20px 6%;
+}
+
+/*その他
+---------------------------------------------------------------------------*/
+.clear {clear: both;}
+.pr {font-size: 10px;}
+.sh {display: none;}
+
+/*トミーオリジナル*/
+/*共通*/
+.inner h2 {
+	font-size: 4rem;
+}
+.inner h3 {
+	font-size: 3rem;
+}
+.inner h4 {
+	font-size: 2.3rem;
+}
+.inner h5 {
+	font-size: 2rem;
+}
+.inner p {
+	font-size: 1.8rem;
+}
+.header-logo {
+	height: 80px;
+	background-image: url(../images/header_logo.png);
+	z-index: 10;
+	width: 200px;
+	margin: 0 auto;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.subvisual {
+	max-height: 800px;
+	min-height: 500px;
+	width: 100%;
+	height: 80vh;
+}
+.subvisual div {
+	height: 100%;
+}
+.subvisual h2 {
+	font-size: 4.3rem;
+	letter-spacing: 0.2rem;
+	text-align: center;
+	padding-top: 15%;
+}
+.subvisual h2 span {
+	display: block;
+	font-size: 30%;	/*文字サイズ*/
+	color: #999;		/*文字色*/
+}
+/*Introduce*/
+.area{
+    background: #222;  
+    width: 100%;
+	height: 80vh;
+}
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+	width: 100%;
+	height: 80vh;
+    overflow: hidden;
+}
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: foam 25s linear infinite;
+	bottom: -150px;
+}
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+.intro-img1 {
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+.intro-img1 > span {
+	width: 100%;
+	display: block;
+	padding-top: 50%;
+	background-size: cover;
+}
+.intro-img2 {
+	width: 50%;
+}
+.intro-img2 > span {
+	display: block;
+	width: 50%;
+	padding-top: 50%;
+	background-size: cover;
+	margin: 0 auto;
+}
+.intro-img3 {
+	width: 100%;
+}
+.intro-img3 > span {
+	display: block;
+	width: 100%;
+	padding-top: 70%;
+	background-size: cover;
+	margin: 0 auto;
+}
+.intro-type1, .intro-type2 {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 70px;
+}
+.intro-type1 p {
+	width: 45%;
+}
+.intro-type1 > div {
+	width: 45%;
+	margin: 0 3% 30px;	/*上、左右、下への余白*/
+}
+.intro-type2 > div {
+	width: 80%;
+	height: 650px;
+	margin: 0 auto;
+}
+.intro-content {
+	margin-bottom: 150px;
+}
+
+/* PROJECTS */
+.p-content {
+	margin-bottom: 100px;
+}
+.p-content > div {
+	display: flex;
+}
+.p-content > div > div {
+	width: 44%;
+}
+.p-content > div > div > p, .p-content > div > div > h4 {
+	margin-left: 3%;
+}
+.p-content div > div:nth-child(2) > span{
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+}
+.p-mokuji {
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 150px;
+	text-align: center;
+}
+.p-mokuji li {
+	padding: 10px 0;
+}
+.p-mokuji a {
+	padding: 0 20px;
+}
+.p-mokuji a {
+	font-size: 2rem;
+	border-bottom: #aaa solid 2px;
+}
+
+/*NOTES main*/
+.notes > h4 {
+	text-align: center;
+	margin-bottom: 100px;
+}
+.note {
+	border-top: #666 solid 2px;
+	padding: 30px 0;
+	display: flex;
+	justify-content: space-around;
+}
+.note:last-child {
+	border-bottom: #666 solid 2px;
+}
+.note h5 {
+	padding-left: 3%;
+}
+.note p {
+	padding: 0;
+}
+.note > label {
+	width: 33%;
+}
+.note > label > span {
+	width: 100%;
+	display: block;
+	height: 100%;
+	min-height: 100px;
+	background-size: cover;
+}
+.note > div {
+	width: 60%;
+}
+.item > div {
+	padding-left: 3%;
+	display: flex;
+	justify-content: space-between;
+}
+/*NOTES sub*/
+.note-sub {
+	width: 80%;
+	margin: 0 auto;
+}
+.note-sub p {
+	text-align: left;
+}
+.note-sub > p > a {
+	display: inline-block;
+	color: #ffd93f;
+}
+.connection {
+	margin-top: 100px;
+	text-align: center;
+}
+.connection > div {
+	display: flex;
+	justify-content: space-around;
+}
+.connection > div > div {
+	width: 30%;
+}
+.connection a > div {
+	background-color: #666;
+	height: 70%;
+}
+.connection span {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding-top: 40%;
+	background-size: cover;
+}
+.connection p {
+	font-size: 1rem;
+}
+/*画面幅800px以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:800px){
+
+.intro-content p {
+	text-align: left;
+}
+.note > label {
+	width: 100%;
+	height: 150px;
+}
+.note > .item {
+	text-align: left;
+}
+.connection > div {
+	display: block;
+}
+.connection > div > div {
+	width: 90%;
+	margin: 0 auto;
+}
+/*全体の設定
+---------------------------------------------------------------------------*/
+body {
+	font-size: 2vw;	/*文字サイズ*/
+}
+
+/*ヘッダー
+---------------------------------------------------------------------------*/
+/*ヘッダーブロック*/
+header {
+	border-bottom: 1px solid #ccc;
+}
+/*ヘッダーブロック（トップページへの追加設定）*/
+.home header {
+	border: none;
+}
+
+/*メインメニュー
+---------------------------------------------------------------------------*/
+/*スマホ用メニューブロック全体*/
+#menubar-s {
+	overflow: auto;height: 100%;
+	position: fixed;z-index: 90;
+	top: 0px;
+	width: 100%;
+	background: rgba(0,0,0,0.8);
+	border-top: 1px solid #fff;
+	animation-name: frame1;		/*冒頭のkeyframesの名前*/
+	animation-duration: 0.5s;	/*アニメーションの実行時間。0.5秒。*/
+	animation-fill-mode: both;	/*待機中は最初のキーフレームを、完了後は最後のキーフレームを維持*/
+	font-size: 16px;
+}
+#menubar-s li span {
+	margin-left: 20px;
+	font-size: 80%;
+}
+/*メニュー１個あたりの設定と、子メニューの見出し。*/
+#menubar-s ul li a,#menubar_hdr2 {
+	display: block;text-decoration: none;
+	padding: 30px 20px 30px 60px;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+}
+/*PC用メニューを非表示にする*/
+#menubar {display: none;}
+
+/*子メニュー
+---------------------------------------------------------------------------*/
+/*子メニューの見出しの追加。基本は上のブロックで設定しています。*/
+#menubar_hdr2 {
+	padding-left: 60px;	/*上にある「メニュー１個あたりの設定と、子メニューの見出し」の最後の数字（４つ目）に合わせる。*/
+}
+/*子メニューメニューブロック全体*/
+#menubar-s2 {
+	display: block;
+	margin-top: 10px;
+	border-radius: 5px;
+	background: rgba(0,0,0,0.3);
+	border: 1px solid #fff;
+}
+/*「＾」アイコン設定*/
+#menubar_hdr2.open {
+	background: url(../images/arrow3.png) no-repeat 20px 35px / auto 18px;
+}
+/*子メニュー１個あたりの設定*/
+#menubar-s2 li a {
+	border-bottom: 1px solid #fff !important;
+	padding: 10px 20px !important;
+}
+#menubar-s2 li:last-child a {
+	border-bottom: none !important;
+}
+
+/*３本バーアイコン設定
+---------------------------------------------------------------------------*/
+/*３本バーブロック*/
+#menubar_hdr {
+	display: block;
+	position: fixed;z-index: 100;
+	top: 20px;
+	left: 80vw;
+}
+/*アイコン共通設定*/
+#menubar_hdr.close,
+#menubar_hdr.open {
+	width: 50px;
+	height: 50px;
+	border: 1px solid #fff;
+}
+/*三本バーアイコン*/
+#menubar_hdr.close {
+	background: #000 url(../images/icon_menu.png) no-repeat center top/50px;
+}
+/*閉じるアイコン*/
+#menubar_hdr.open {
+	background: #000 url(../images/icon_menu.png) no-repeat center bottom/50px;
+}
+
+/*fixmenu設定（メニューが画面上部に到達した際のスタイル）
+---------------------------------------------------------------------------*/
+/*fixmenuから折りたたみメニューになるのでリセット。*/
+body.is-fixed-menu #contents {
+	margin-top: 0px;
+}
+body.is-fixed #contents {
+	margin-top: 0px;
+}
+
+/*コンテンツ
+---------------------------------------------------------------------------*/
+#contents {
+	padding: 50px 0;
+}
+/*h2タグ*/
+#contents h2 {
+	margin-bottom: 50px;
+}
+
+/*list-column（トップページで使っている３列ブロック）
+---------------------------------------------------------------------------*/
+/*ボックス内のh4（見出し）タグ*/
+#contents .list-column h4 {
+	margin-bottom: 0px;
+}
+
+/*ヘッダーメニューが固定されなくなるので、再設定。
+---------------------------------------------------------------------------*/
+.link {
+	margin-top: -30px;
+	padding-top: 30px;
+}
+
+/*その他
+---------------------------------------------------------------------------*/
+body.s-n .sub,body.s-n {display: none;}
+.big1 {font-size: 20px;}
+
+}
+
+
+
+/*画面幅480px以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:480px){
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+body {
+	font-size: 3vw;
+}
+.inner {
+	text-align: center;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/*コンテンツ
+---------------------------------------------------------------------------*/
+.inner h2 {
+	margin-bottom: 30px;
+	font-size: 3rem;
+}
+.inner h3 {
+	margin-bottom: 20px;
+	font-size: 2.1rem;
+	padding-left: 0;
+}
+.inner h4 {
+	font-size: 1.3rem;
+}
+.inner p {
+	font-size: 1rem;
+}
+#contents section + section {
+	margin-top: 30px;
+}
+
+/*subvisual*/
+.subvisual, .area, .circles {
+	height: 60vh;
+}
+.subvisual h2 {
+	font-size: 3rem;
+	padding-top: 50%;
+}
+
+
+/*list（worksページで使っている横長ブロック）
+---------------------------------------------------------------------------*/
+/*ボックス内のボタン（共通）*/
+.btn1 a {
+	padding: 5px 10px;
+}
+/*その他
+---------------------------------------------------------------------------*/
+.sh {display:block;}
+.pc {display:none;}
+
+/*HOME*/
+.contents {
+	flex-wrap: wrap;
+}
+.contents > div {
+	width: 90vw;
+	margin: 0 auto;
+}
+#contents .list-column {
+	width: 48%;
+}
+
+/*INTRODUCE*/
+.intro h2 {
+	width: 90vw;
+	margin: 0 auto;
+}
+.intro-content {
+	margin-bottom: 60px;
+}
+.intro-type1 {
+	flex-wrap: wrap;
+}
+.intro-type1 p, .intro-type1 div {
+	width: 100%;
+	margin: 0 auto;
+}
+.intro-type2 > div {
+	height: 280px;
+	width: 100%;
+}
+/*PRPJECTS*/
+.p-mokuji {
+	width: 100%;
+}
+.p-content > div {
+	flex-wrap: wrap;
+}
+.p-content > div > div {
+	width: 100%;
+}
+.p-content div > div:nth-child(2) {
+	height: 200px;
+}
+/*NOTES-main*/
+.note {
+	flex-wrap: wrap;
+}
+.note > div:first-child {
+	width: 80%;
+	height: 160px;
+}
+.note > div:nth-child(2) {
+	width: 80%;
+}
+/*NOTES-sub*/
+.note-sub {
+	width: 100%;
+}
+.connection > div > div > div {
+	height: 100px;
+}
+.connection > div > div > p {
+	height: 100px;
+	overflow: scroll;
+}
+}
